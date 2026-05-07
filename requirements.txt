@@ -1,0 +1,3 @@
+ipfabric
+python-dotenv
+rich
