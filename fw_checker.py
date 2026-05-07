@@ -1,3 +1,11 @@
+# /// script
+# requires-python = ">=3.9"
+# dependencies = [
+#     "ipfabric",
+#     "python-dotenv",
+#     "rich",
+# ]
+# ///
 """IP Fabric Firewall Checker.
 
 Lists every device of type `fw` from Inventory > Devices and verifies that

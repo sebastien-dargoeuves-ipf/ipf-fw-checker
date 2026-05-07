@@ -11,8 +11,23 @@ Devices with zero rules in both tables are reported as **NOK** — useful to spo
 
 Make sure the version of the `ipfabric` SDK matches your version of IP Fabric.
 
+You can run the script in two ways:
+
+### Option 1 — with [`uv`](https://docs.astral.sh/uv/) (recommended, no venv setup)
+
+The script ships with a [PEP 723](https://peps.python.org/pep-0723/) inline metadata block listing its dependencies, so `uv` will create an ephemeral environment for you on first run:
+
 ```sh
+uv run fw_checker.py
+```
+
+### Option 2 — with `pip` and a regular virtualenv
+
+```sh
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
+python fw_checker.py
 ```
 
 ## How to use
@@ -36,6 +51,8 @@ Then edit `.env`:
 ### Run the script
 
 ```sh
+uv run fw_checker.py [OPTIONS]
+# or
 python fw_checker.py [OPTIONS]
 ```
 
@@ -49,13 +66,13 @@ Options:
 Console-only check:
 
 ```sh
-python fw_checker.py
+uv run fw_checker.py
 ```
 
 Console + CSV export:
 
 ```sh
-python fw_checker.py --csv fw_status.csv
+uv run fw_checker.py --csv fw_status.csv
 ```
 
 ### Output
