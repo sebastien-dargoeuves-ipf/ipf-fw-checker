@@ -9,11 +9,33 @@ Devices with zero rules in both tables are reported as **NOK** — useful to spo
 
 ## How to install
 
-Make sure the version of the `ipfabric` SDK matches your version of IP Fabric.
+### Match the SDK to your IP Fabric version
 
-You can run the script in two ways:
+The `ipfabric` SDK is versioned to track IP Fabric itself — pick a release whose major and minor match your server (e.g. IP Fabric **7.10** → `ipfabric~=7.10.0`, IP Fabric **6.10** → `ipfabric~=6.10.0`). The `~=` "compatible release" operator means "any patch within this minor", so `~=7.10.0` allows `7.10.0`, `7.10.1`, … but not `7.11.0`. Available versions are listed on [PyPI](https://pypi.org/project/ipfabric/#history).
 
-### Option 1 — with [`uv`](https://docs.astral.sh/uv/) (recommended, no venv setup)
+By default the script and `requirements.txt` install the latest available `ipfabric`. To pin to the minor matching your server, change `ipfabric` in **both** places below to e.g. `ipfabric~=7.10.0`:
+
+- in `fw_checker.py`, inside the `# /// script` PEP 723 block at the top
+- in `requirements.txt`
+
+For example:
+
+```python
+# /// script
+# requires-python = ">=3.9"
+# dependencies = [
+#     "ipfabric~=7.10.0",
+#     "python-dotenv",
+#     "rich",
+# ]
+# ///
+```
+
+### Run the install
+
+You can run the script in two ways.
+
+#### Option 1 — with [`uv`](https://docs.astral.sh/uv/) (recommended, no venv setup)
 
 The script ships with a [PEP 723](https://peps.python.org/pep-0723/) inline metadata block listing its dependencies, so `uv` will create an ephemeral environment for you on first run:
 
@@ -21,7 +43,7 @@ The script ships with a [PEP 723](https://peps.python.org/pep-0723/) inline meta
 uv run fw_checker.py
 ```
 
-### Option 2 — with `pip` and a regular virtualenv
+#### Option 2 — with `pip` and a regular virtualenv
 
 ```sh
 python -m venv .venv
