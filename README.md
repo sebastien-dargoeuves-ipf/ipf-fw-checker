@@ -122,8 +122,7 @@ The CSV (when `--csv` is used) includes the same data plus `status`, `platform`,
 ## How matching works
 
 Devices and rules are joined on the **serial number (`sn`)**, not the hostname.
-
-This matters for vendors that present sub-devices (e.g. PaloAlto vsys appear in the inventory as `hostname/vsys1`, `hostname/vsys2`, …). Each sub-device has its own unique `sn`, so they're checked independently.
+Each sub-device (vsys, vdom) has its own unique `sn`, so they're checked independently.
 
 ## Scope
 
